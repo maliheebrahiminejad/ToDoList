@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <p><button onclick="clickCounter()" type="button">Click me!</button></p>
+
+    <p>Number of clicks:</p>
+    <p id="demo"></p></head>
+<body>
+    <script>
+localStorage.setItem("lastname", "Smith");
+localStorage.setItem("x", "test");
+localStorage.removeItem("lastname");
+localStorage.removeItem("x");
+// یک متغیر با نام کلیک کانت و مقدار یک داخل لوکال ذخیره کرده است
+// localStorage.clickcount = 1;
+// console.log(localStorage.clickcount);
+clickCounter();
+function clickCounter() {
+  if (localStorage.clickcount) {
+    localStorage.clickcount = Number(localStorage.clickcount)+1;
+  } else {
+    localStorage.clickcount = 1;
+  }
+  document.getElementById("demo").innerHTML = localStorage.clickcount;
+}
+localStorage.removeItem("clickcount");
+
+    </script>
+</body>
+</html>

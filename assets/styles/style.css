@@ -1,0 +1,190 @@
+@import url(./fonts.css);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "iranyekan";
+    list-style: none;
+  }
+  
+  :root {
+    --primaryColor: #6d28d9;
+    --secondaryColor: #ede9fe;
+    --mainWhite: #fff;
+    --mainBlack: #222;
+    --mainGrey: #7c7c7c;
+    --mainSpacing: 0.1rem;
+    --mainTransition: all 0.3s linear;
+    --mainRed: #db2777;
+    --bodyColor: #f6f6f6;
+    --modalGray:#e2e8f0;
+    --moldalContent:#fca5a5;
+  }
+  html{
+    font-size: 62.5%;
+  }
+ 
+  body{
+    font-family: iranyekan;
+background-color: var(--bodyColor);
+font-size: 2rem; 
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+ }
+ header{
+    min-height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container{
+    display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+}
+.form-container{
+    display: flex;
+    align-items: center;
+    
+}
+
+.form-todo{
+    background-color: var(--mainWhite);
+    width: 30rem;
+    display: flex;
+}
+.form-todo input{
+    flex: 1;
+}
+.form-todo button,input{
+    border: none;
+    outline: 0;
+background:none;  
+  padding: 1rem;
+
+}
+.form-todo button:hover{
+    background-color: var(--primaryColor);
+    color: var(--mainWhite);
+    transition: var(--mainTransition);
+}
+.form-todo button{
+    font-size: 2rem;
+    color: var(--primaryColor);
+    cursor: pointer;
+}
+.todo-container{
+    width: 30rem;
+}
+.todo{
+    background-color: var(--secondaryColor);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5rem 0;
+    transition: all 0.3s ease;
+   
+}
+.todo li{
+    color: var(--primaryColor);
+    font-weight: bold;
+    flex: 1;
+}
+.todo span{
+    display: block;
+  /* background-color: white; */
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.fa-trash-can {
+    color: var(--mainRed);
+  }
+  
+  .fa-edit,
+  .fa-check-square {
+    color: var(--primaryColor);
+  }
+  .completed{
+    opacity: 0.5;
+    text-decoration: line-through;
+  }
+.select{
+    width: 15rem;
+}
+select{
+    width: 100%;
+    padding: 1rem;
+    margin-left: 1rem;
+    color: var(--primaryColor);
+border: none;
+outline: none;
+background-color: var(--mainWhite);
+}
+/* modal */
+
+ 
+/* The Modal (background) */
+.modal {
+  display: none;/*  Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: var(--modalGray);
+  opacity: 0.9;
+}
+
+/* Modal Content */
+.modalcontent {
+  font-size: 2rem;
+  background-color: var(--moldalContent) ;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid var(--mainGrey);
+  width: 50%;
+}
+
+/* The Close Button */
+.close {
+  color: var(--mainGrey);
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: var(--mainBlack);
+  /* text-decoration: none; */
+  cursor: pointer;
+}
+@media (max-width: 600px) {
+  .form-container {
+    flex-direction: column;
+  }
+  .form-container form {
+    order: 2;
+    margin-top: 2rem;
+  }
+  
+  .todo-container,
+  form {
+    width: 90vw;
+    max-width: 45rem;
+  }
+  .todo span{
+    padding: 0.7rem;
+   font-size: 1.1rem;
+  }
+  .modalcontent{
+    font-size: 1.4rem;
+  }
+}
