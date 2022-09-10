@@ -11,7 +11,7 @@ const span = document.querySelector(".close");
 
 // event lisitener
 todoButton.addEventListener("click", addTodo);
-todoList.addEventListener("click", checkRemoveEdit);
+todoList.addEventListener("click", checkRemove);
 
 todoFilter.addEventListener("click", showCategory);
 // show todo saved in localstorage
@@ -34,7 +34,7 @@ function addTodo(e) {
     const todoDiv = document.createElement("div");
     todoDiv.classList.add("todo");
     // 2.set todoDiv
-    todoDiv.innerHTML = `<li>${todoInput.value}</li><span><i class="fa-solid fa-check-square"></i></span><span><i class="fa-solid fa-edit"></i></span><span><i class="fa-solid fa-trash-can"></i></span>`;
+    todoDiv.innerHTML = `<li>${todoInput.value}</li><span><i class="fa-solid fa-check-square"></i></span><span><i class="fa-solid fa-trash-can"></i></span>`;
 
     // 3.add to dom
     todoList.appendChild(todoDiv);
@@ -49,60 +49,26 @@ function addTodo(e) {
     modalDiv.appendChild(pTag);
   }
 }
-function checkRemoveEdit(e) {
-//  todoInput.value=e.target.textContent;
-           // check input
-           const selectIcon = [...e.target.classList];
-    //  console.log(selectIcon);
-    // Array [ "fa-solid", "fa-check-square" , "fa-edit"]
-    const item = e.target;
+function checkRemove(e) {
+  //  todoInput.value=e.target.textContent;
+  // check input
+  const selectIcon = [...e.target.classList];
+  //  console.log(selectIcon);
+  // Array [ "fa-solid", "fa-check-square" , "fa-edit"]
+  const item = e.target;
 
-    // console.log(item.parentElement.parentElement);
-    // <div class="todo">
-    const todo = item.parentElement.parentElement;
-    
-    
+  // console.log(item.parentElement.parentElement);
+  // <div class="todo">
+  const todo = item.parentElement.parentElement;
 
-    if (selectIcon[1] === "fa-trash-can") {
-      removeLocalStorage(todo);
-      todo.remove();
-    } else if (selectIcon[1] === "fa-check-square") {
-      todo.classList.toggle("completed");
-    } else      try {
-
-  
-    if (selectIcon[1] === "fa-edit") {
-      // todo.childNodes[0]=> li
-      // console.log(todo.childNodes[0].textContent);
-      if (todoInput.value.length === 0) {
-        throw "Please enter the new text to edit";
-      }
-      // update storage
-      editStorage(todo.childNodes[0].textContent);
-      //  update dom
-      // موقع ویرایش یک کار چک میکنه اگر قبلا این کار جدید بوده ویرایشش نمیکنه اگر صفحه را بعد تغییر رفرش کنیم مشکلی نیست بیشتر این کد را نوشتم که صفحه را برای مشاهده تغییر رفرش نکنیم
-      if (!isRepeatTodo(todoInput.value)) {
-        todo.childNodes[0].textContent = todoInput.value;
-      }
-    }
-  } catch (error) {
-    modal.style.display = "block";
-    const pTag = document.createElement("p");
-    pTag.innerHTML = `<p>${error}</p>`;
-    modalDiv.appendChild(pTag);
+  if (selectIcon[1] === "fa-trash-can") {
+    removeLocalStorage(todo);
+    todo.remove();
+  } else if (selectIcon[1] === "fa-check-square") {
+    todo.classList.toggle("completed");
   }
-  
 }
-function isRepeatTodo(item) {
-  let i = 0;
-  const todos = [...todoList.childNodes];
-  todos.forEach((element) => {
-    const task = [...element.childNodes];
-    // console.log(task[0].textContent);
-    if (task[0].textContent === item) i++;
-  });
-  return i;
-}
+
 function showCategory(e) {
   //  هرچیزی که قسمت اچ تی ام ال داخل یو ال باشه نشون میده کدهایی که کامنت میزاریم فضا های خالی همه را پاک کردم
   const todos = [...todoList.childNodes];
@@ -147,7 +113,7 @@ function getLocalStorage() {
     const todoDiv = document.createElement("div");
     todoDiv.classList.add("todo");
     // 2.set todoDiv
-    todoDiv.innerHTML = `<li>${element}</li><span><i class="fa-solid fa-check-square"></i></span><span><i class="fa-solid fa-edit"></i></span><span><i class="fa-solid fa-trash-can"></i></span>`;
+    todoDiv.innerHTML = `<li>${element}</li><span><i class="fa-solid fa-check-square"></i></span><span><i class="fa-solid fa-trash-can"></i></span>`;
 
     // 3.add to dom
     todoList.appendChild(todoDiv);
@@ -162,27 +128,7 @@ function removeLocalStorage(todo) {
   const filtersTodos = savedStorage.filter((t) => t !== todoText);
   localStorage.setItem("value", JSON.stringify(filtersTodos));
 }
-// edit Item to todoInput.value in savedStorage
-function editStorage(Item) {
-  let savedStorage = localStorage.getItem("value")
-    ? JSON.parse(localStorage.getItem("value"))
-    : [];
-  try {
-    // prevent insert repeat task
-    if (searchInstorage(todoInput.value)) throw "It is repetitive task.";
 
-    // update savedStorage
-    let index = savedStorage.indexOf(Item);
-    savedStorage[index] = todoInput.value;
-
-    localStorage.setItem("value", JSON.stringify(savedStorage));
-  } catch (error) {
-    modal.style.display = "block";
-    const pTag = document.createElement("p");
-    pTag.innerHTML = `<p>${error}</p>`;
-    modalDiv.appendChild(pTag);
-  }
-}
 function searchInstorage(searchItem) {
   let savedStorage = localStorage.getItem("value")
     ? JSON.parse(localStorage.getItem("value"))

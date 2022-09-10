@@ -13,22 +13,23 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link rel="shortcut icon" href="#" />
   </head>
   <body>
     <header><h1>TO DO List</h1></header>
     <section class="container">
       <div class="form-container">
         <form action="" class="form-todo">
-          <input class="todo-input" type="text"  />
+          <input class="todo-input" type="text" />
           <button class="todo-button" type="submit">
             <i class="fa fa-circle-plus"></i>
           </button>
         </form>
         <div class="select">
           <select class="todo-filters" name="todoselect" id="">
-            <option  value="all">all</option>
-            <option  value="completed"> completed</option>
-            <option  value="uncompleted">uncompleted </option>
+            <option value="all">all</option>
+            <option value="completed">completed</option>
+            <option value="uncompleted">uncompleted</option>
           </select>
         </div>
       </div>
@@ -36,12 +37,10 @@
         <ul class="todo-list"></ul>
       </div>
       <div id="myModal" class="modal">
-
         <!-- Modal content -->
         <div class="modalcontent">
           <span class="close">&times;</span>
         </div>
-      
       </div>
     </section>
     <script src="./index.js"></script>
